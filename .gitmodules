@@ -1,0 +1,4 @@
+[submodule "forticlient-tailscaled"]
+	path = forticlient-tailscaled
+	url = https://github.com/G-SLabs/forticlient-tailscaled.git
+	branch = dev
