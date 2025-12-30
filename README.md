@@ -11,6 +11,7 @@ This repository contains Docker Compose configurations and related files for dep
 ```
 home-lab_server-recipes/
 ├── forticlient-tailscaled/    # FortiClient VPN + Tailscale subnet router
+├── portainer-tailscaled/      # Portainer CE + Tailscale remote access
 └── [future recipes...]
 ```
 
@@ -20,6 +21,11 @@ home-lab_server-recipes/
 Combines FortiClient VPN with Tailscale to create a subnet router, allowing access to VPN-protected networks through your Tailscale network.
 
 **Use case**: Access corporate/private networks from anywhere via Tailscale without running VPN on each device.
+
+### 🐳 Portainer-Tailscaled
+Combines Portainer CE with Tailscale for secure, remote container management without exposing ports to the public internet.
+
+**Use case**: Manage Docker containers from anywhere via Tailscale with a beautiful web UI.
 
 ## Getting Started
 
