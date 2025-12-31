@@ -1,4 +1,7 @@
 [submodule "forticlient-tailscaled"]
 	path = forticlient-tailscaled
-	url = https://github.com/G-SLabs/forticlient-tailscaled.git
+	url = https://github.com/CoriscoDev/forticlient-tailscaled.git
 	branch = dev
+[submodule "portainer_tailscaled"]
+	path = portainer-tailscaled
+	url = https://github.com/G3Labz/portainer-tailscaled.git
