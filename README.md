@@ -11,6 +11,7 @@ This repository contains Docker Compose configurations and related files for dep
 ```
 home-lab_server-recipes/
 ├── forticlient-tailscaled/    # FortiClient VPN + Tailscale subnet router
+├── pihole-tailscaled/         # Pi-hole + Unbound + Tailscale DNS server
 ├── portainer-tailscaled/      # Portainer CE + Tailscale remote access
 └── [future recipes...]
 ```
@@ -26,6 +27,17 @@ Combines FortiClient VPN with Tailscale to create a subnet router, allowing acce
 Combines Portainer CE with Tailscale for secure, remote container management without exposing ports to the public internet.
 
 **Use case**: Manage Docker containers from anywhere via Tailscale with a beautiful web UI.
+
+### 🛡️ Pi-hole-Tailscaled
+Combines Pi-hole with Unbound (recursive DNS) and Tailscale for network-wide ad blocking accessible from anywhere through your Tailscale network.
+
+**Features**:
+- Network-wide ad blocking with Pi-hole
+- Recursive DNS resolution with Unbound (no third-party DNS dependency)
+- Secure access via Tailscale network
+- Web-based admin interface
+
+**Use case**: Block ads and trackers across all your devices via Tailscale DNS, with full privacy through recursive DNS resolution.
 
 ## Getting Started
 
@@ -165,6 +177,57 @@ To add a new recipe to this repository:
 4. Document required environment variables
 5. Add example configurations
 6. Test the deployment
+
+### Adding a Recipe as a Submodule
+
+If your recipe is in a separate Git repository, you can add it as a submodule:
+
+```bash
+# Add a new submodule
+git submodule add https://github.com/username/recipe-repo.git recipe-name
+
+# Commit the submodule addition
+git add .gitmodules recipe-name
+git commit -m "Add recipe-name as submodule"
+```
+
+**Converting an existing cloned repo to a submodule (recommended):**
+```bash
+# If you already have a cloned repo inside the workspace:
+# 1. First, get the remote URL and recipe name
+cd recipe-name
+REPO_URL=$(git remote get-url origin)
+RECIPE_NAME=${PWD##*/}
+
+# 2. Move the repo out temporarily
+cd ..
+mv "$RECIPE_NAME" "../${RECIPE_NAME}-backup"
+
+# 3. Add it as a proper submodule
+git submodule add "$REPO_URL" "$RECIPE_NAME"
+
+# 4. Copy any local changes/data if needed, then remove backup
+cp -r "../${RECIPE_NAME}-backup/local-data" "$RECIPE_NAME/"  # if applicable
+rm -rf "../${RECIPE_NAME}-backup"
+
+# 5. Commit the submodule
+git add .gitmodules "$RECIPE_NAME"
+git commit -m "Add $RECIPE_NAME as submodule"
+```
+
+> **Note:** While there are "hacky" ways to convert a nested repo by editing `.gitmodules` directly,
+> they often don't work reliably. The move-and-readd method above is the safest approach.
+
+**Managing submodules:**
+```bash
+# Update a specific submodule to latest commit
+git submodule update --remote --merge recipe-name
+
+# Remove a submodule
+git submodule deinit -f recipe-name
+rm -rf .git/modules/recipe-name
+git rm -f recipe-name
+```
 
 ### Recipe Structure Template
 

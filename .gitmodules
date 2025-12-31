@@ -2,6 +2,9 @@
 	path = forticlient-tailscaled
 	url = https://github.com/CoriscoDev/forticlient-tailscaled.git
 	branch = dev
-[submodule "portainer_tailscaled"]
+[submodule "portainer-tailscaled"]
 	path = portainer-tailscaled
 	url = https://github.com/G3Labz/portainer-tailscaled.git
+[submodule "pihole-tailscaled"]
+	path = pihole-tailscaled
+	url = https://github.com/G3Labz/pihole-tailscaled.git
