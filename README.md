@@ -10,9 +10,10 @@ This repository contains Docker Compose configurations and related files for dep
 
 ```
 home-lab_server-recipes/
-├── forticlient-tailscaled/    # FortiClient VPN + Tailscale subnet router
-├── pihole-tailscaled/         # Pi-hole + Unbound + Tailscale DNS server
-├── portainer-tailscaled/      # Portainer CE + Tailscale remote access
+├── forticlient-tailscaled/       # FortiClient VPN + Tailscale subnet router
+├── pihole-tailscaled/            # Pi-hole + Unbound + Tailscale DNS server
+├── portainer-tailscaled/         # Portainer CE + Tailscale remote access
+├── stremio_server-tailscaled/    # Stremio Server + Tailscale media streaming
 └── [future recipes...]
 ```
 
@@ -38,6 +39,18 @@ Combines Pi-hole with Unbound (recursive DNS) and Tailscale for network-wide ad 
 - Web-based admin interface
 
 **Use case**: Block ads and trackers across all your devices via Tailscale DNS, with full privacy through recursive DNS resolution.
+
+### 📺 Stremio-Server-Tailscaled
+Combines Stremio Server (web player + streaming server) with Tailscale for secure, remote media streaming accessible from anywhere through your Tailscale network.
+
+**Features**:
+- Full Stremio web player and streaming server
+- Built-in ffmpeg with hardware acceleration support (Intel/AMD VAAPI)
+- Automatic server URL configuration
+- Optional HTTPS with auto-generated certificates
+- Optional HTTP Basic Authentication
+
+**Use case**: Stream media from anywhere via Tailscale with Stremio's powerful addon ecosystem.
 
 ## Getting Started
 

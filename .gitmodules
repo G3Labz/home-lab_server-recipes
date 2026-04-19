@@ -8,3 +8,34 @@
 [submodule "pihole-tailscaled"]
 	path = pihole-tailscaled
 	url = https://github.com/G3Labz/pihole-tailscaled.git
+[submodule "excalidraw-tailscale"]
+	path = excalidraw-tailscale
+	url = ./excalidraw-tailscale
+	# url = https://github.com/G3Labz/excalidraw-tailscale.git
+[submodule "arr-stack-tailscaled"]
+	path = arr-stack-tailscaled
+	url = https://github.com/G3Labz/arr-stack-tailscaled.git
+[submodule "filebrowser-tailscaled"]
+	path = filebrowser-tailscaled
+	url = https://github.com/G3Labz/filebrowser-tailscaled.git
+[submodule "gitea-tailscaled"]
+	path = gitea-tailscaled
+	url = https://github.com/G3Labz/gitea-tailscaled.git
+[submodule "it-tools-tailscaled"]
+	path = it-tools-tailscaled
+	url = https://github.com/G3Labz/it-tools-tailscaled.git
+[submodule "jellyfin-tailscaled"]
+	path = jellyfin-tailscaled
+	url = https://github.com/G3Labz/jellyfin-tailscaled.git
+[submodule "librespeed-tailscaled"]
+	path = librespeed-tailscaled
+	url = https://github.com/G3Labz/librespeed-tailscaled.git
+[submodule "rustdesk-tailscaled"]
+	path = rustdesk-tailscaled
+	url = https://github.com/G3Labz/rustdesk-tailscaled.git
+[submodule "uptime-kuma-tailscaled"]
+	path = uptime-kuma-tailscaled
+	url = https://github.com/G3Labz/uptime-kuma-tailscaled.git
+[submodule "stremio_server-tailscaled"]
+	path = stremio_server-tailscaled
+	url = https://github.com/G3Labz/stremio_server-tailscaled.git
