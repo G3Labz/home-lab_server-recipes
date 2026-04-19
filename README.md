@@ -186,12 +186,12 @@ cd forticlient-tailscaled
 
 2. Copy the example configuration:
 ```bash
-cp docker-compose.example.yml docker-compose.yml
+cp compose.example.yml compose.yaml
 ```
 
 3. Edit the configuration with your credentials:
 ```bash
-nano docker-compose.yml
+nano compose.yaml
 ```
 
 4. Start the service:
@@ -292,7 +292,7 @@ docker system prune -a
 To add a new recipe to this repository:
 
 1. Create a new directory for your recipe
-2. Add a `docker-compose.yml` (or example file)
+2. Add a `compose.yaml` (or example file)
 3. Include a README.md with specific instructions
 4. Document required environment variables
 5. Add example configurations
@@ -318,16 +318,16 @@ Follow these naming patterns for consistency across all recipes:
 - This pattern is shared across all recipes for consistency
 
 **Configuration Files:**
-- `docker-compose.yml` - Main compose file (gitignored, contains secrets)
-- `docker-compose.example.yml` - Template without secrets (committed to git)
+- `compose.yaml` - Main compose file (gitignored, contains secrets)
+- `compose.example.yml` - Template without secrets (committed to git)
 - `.env.example` - Environment variables template (if needed)
 
 **Standard Directory Structure:**
 ```
 recipe-name/
 ├── README.md                    # Specific documentation
-├── docker-compose.example.yml   # Example configuration (no secrets)
-├── docker-compose.yml           # Actual config (gitignored)
+├── compose.example.yml   # Example configuration (no secrets)
+├── compose.yaml           # Actual config (gitignored)
 ├── Dockerfile                   # Custom image (if needed)
 ├── .env.example                 # Environment variables template
 ├── <service>_data/              # Persistent data for main service
@@ -392,7 +392,7 @@ git rm -f recipe-name
 ```
 recipe-name/
 ├── README.md                    # Specific documentation
-├── docker-compose.example.yml   # Example configuration
+├── compose.example.yml   # Example configuration
 ├── Dockerfile                   # Custom image (if needed)
 ├── .env.example                 # Environment variables template
 ├── <service>_data/              # Persistent data (use underscore!)
