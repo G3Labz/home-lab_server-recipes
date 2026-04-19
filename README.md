@@ -10,9 +10,17 @@ This repository contains Docker Compose configurations and related files for dep
 
 ```
 home-lab_server-recipes/
+├── arr-stack-tailscaled/         # *arr media automation stack + Tailscale
+├── excalidraw-tailscaled/        # Excalidraw whiteboard + Tailscale
+├── filebrowser-tailscaled/       # FileBrowser + Tailscale file management
 ├── forticlient-tailscaled/       # FortiClient VPN + Tailscale subnet router
+├── gitea-tailscaled/             # Gitea + Act Runner + Tailscale CI/CD
+├── it-tools-tailscaled/          # IT-Tools developer utilities + Tailscale
+├── jellyfin-tailscaled/          # Jellyfin media server + Tailscale
+├── librespeed-tailscaled/        # LibreSpeed speed test + Tailscale
 ├── pihole-tailscaled/            # Pi-hole + Unbound + Tailscale DNS server
 ├── portainer-tailscaled/         # Portainer CE + Tailscale remote access
+├── rustdesk-tailscaled/          # RustDesk remote desktop + Tailscale
 ├── stremio_server-tailscaled/    # Stremio Server + Tailscale media streaming
 └── [future recipes...]
 ```
@@ -51,6 +59,105 @@ Combines Stremio Server (web player + streaming server) with Tailscale for secur
 - Optional HTTP Basic Authentication
 
 **Use case**: Stream media from anywhere via Tailscale with Stremio's powerful addon ecosystem.
+
+### 🛠️ IT-Tools-Tailscaled
+Combines IT-Tools with Tailscale for secure access to 80+ developer utilities from anywhere on your Tailscale network.
+
+**Features**:
+- Encoders/decoders (Base64, JWT, URL, etc.)
+- Converters (JSON, YAML, timestamps)
+- Generators (UUID, hash, passwords)
+- Network tools and calculators
+- No tracking or analytics
+
+**Use case**: Access a comprehensive toolkit of developer utilities securely from anywhere.
+
+### 🏗️ Gitea-Tailscaled
+Combines Gitea (self-hosted Git service) with Act Runner (CI/CD) and Tailscale for secure, remote Git and CI/CD management accessible from anywhere on your Tailscale network.
+
+**Features**:
+- Full Git server with web UI, issues, PRs, and releases
+- GitHub Actions-compatible CI/CD with Act Runner
+- Docker-based job execution for isolation
+- SQLite database (no external dependencies)
+- Secure access via Tailscale network
+
+**Use case**: Host your own Git repositories and run CI/CD pipelines securely via Tailscale, without exposing to the public internet.
+
+### 📁 FileBrowser-Tailscaled
+Combines FileBrowser with Tailscale for secure, remote file management accessible from anywhere on your Tailscale network.
+
+**Features**:
+- Web-based file browser with upload/download
+- User management with permissions
+- File sharing capabilities
+- Command execution support
+- Dark theme available
+
+**Use case**: Manage files on your server from anywhere with a beautiful web UI.
+
+### 🎨 Excalidraw-Tailscaled
+Combines Excalidraw with Tailscale for a self-hosted virtual whiteboard accessible from anywhere on your Tailscale network.
+
+**Features**:
+- Hand-drawn style diagrams and sketches
+- Shapes, arrows, text, freehand drawing
+- Export to PNG, SVG, clipboard
+- No external tracking
+- Works offline once loaded
+
+**Use case**: Create beautiful diagrams and sketches with a privacy-focused whiteboard.
+
+### 🚀 LibreSpeed-Tailscaled
+Combines LibreSpeed with Tailscale for a self-hosted speed test server accessible from anywhere on your Tailscale network.
+
+**Features**:
+- Download/upload speed tests
+- Ping and jitter measurements
+- Optional telemetry/result storage
+- No third-party dependencies
+- Privacy-focused
+
+**Use case**: Test network speeds across your Tailscale network without relying on external services.
+
+### 🖥️ RustDesk-Tailscaled
+Combines RustDesk Server with Tailscale for a self-hosted remote desktop solution accessible from anywhere on your Tailscale network.
+
+**Features**:
+- Cross-platform support (Windows, macOS, Linux, mobile)
+- End-to-end encryption
+- File transfer capabilities
+- No account required for basic use
+- Full control over infrastructure
+
+**Use case**: Access your computers remotely with your own private remote desktop server.
+
+### 🎬 Jellyfin-Tailscaled
+Combines Jellyfin with Tailscale for a self-hosted media server accessible from anywhere on your Tailscale network.
+
+**Features**:
+- Movies, TV shows, music, live TV support
+- Hardware transcoding (Intel QSV, NVIDIA, AMD)
+- Multiple user accounts with parental controls
+- Mobile and TV apps available
+- Plugin ecosystem
+
+**Use case**: Stream your media library from anywhere with a free, open-source media server.
+
+### 📺 *arr-Stack-Tailscaled
+Combines the popular *arr media automation applications with Tailscale for complete media library automation accessible from anywhere on your Tailscale network.
+
+**Includes**:
+- Prowlarr (indexer manager)
+- Sonarr (TV shows)
+- Radarr (movies)
+- Lidarr (music)
+- Readarr (books)
+- Bazarr (subtitles)
+- qBittorrent & SABnzbd (download clients)
+- FlareSolverr (Cloudflare bypass)
+
+**Use case**: Automate your entire media library management with industry-standard tools.
 
 ## Getting Started
 
@@ -191,6 +298,44 @@ To add a new recipe to this repository:
 5. Add example configurations
 6. Test the deployment
 
+### Naming Conventions
+
+Follow these naming patterns for consistency across all recipes:
+
+**Recipe Directory Names:**
+- Format: `<service>-tailscaled` (hyphen-separated, lowercase)
+- Examples: `pihole-tailscaled`, `portainer-tailscaled`, `stremio_server-tailscaled`
+- Use underscores only if the service name itself contains them (e.g., `stremio_server`)
+
+**Data/Volume Directories:**
+- Format: `<service>_data/` (underscore before `data`, lowercase)
+- Examples: `pihole_data/`, `portainer_data/`, `stremio_data/`, `unbound_data/`
+- Always use underscore (`_`) to separate service name from `data` suffix
+- Never use hyphens in data directory names
+
+**Tailscale State Directory:**
+- Always use: `tailscale/state/`
+- This pattern is shared across all recipes for consistency
+
+**Configuration Files:**
+- `docker-compose.yml` - Main compose file (gitignored, contains secrets)
+- `docker-compose.example.yml` - Template without secrets (committed to git)
+- `.env.example` - Environment variables template (if needed)
+
+**Standard Directory Structure:**
+```
+recipe-name/
+├── README.md                    # Specific documentation
+├── docker-compose.example.yml   # Example configuration (no secrets)
+├── docker-compose.yml           # Actual config (gitignored)
+├── Dockerfile                   # Custom image (if needed)
+├── .env.example                 # Environment variables template
+├── <service>_data/              # Persistent data for main service
+├── tailscale/                   # Tailscale configuration
+│   └── state/                   # Tailscale state files
+└── <other-service>_data/        # Data for additional services
+```
+
 ### Adding a Recipe as a Submodule
 
 If your recipe is in a separate Git repository, you can add it as a submodule:
@@ -250,7 +395,10 @@ recipe-name/
 ├── docker-compose.example.yml   # Example configuration
 ├── Dockerfile                   # Custom image (if needed)
 ├── .env.example                 # Environment variables template
-└── config/                      # Configuration files
+├── <service>_data/              # Persistent data (use underscore!)
+├── tailscale/                   # Tailscale configuration
+│   └── state/                   # Tailscale state files
+└── config/                      # Additional configuration files
 ```
 
 ## Contributing
